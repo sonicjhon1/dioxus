@@ -542,6 +542,15 @@ impl WebSocketOptions {
     }
 
     #[cfg(feature = "server")]
+    pub fn with_upgrade(
+        mut self,
+        f: impl FnOnce(axum::extract::ws::WebSocketUpgrade) -> axum::extract::ws::WebSocketUpgrade,
+    ) -> Self {
+        self.upgrade = self.upgrade.take().map(f);
+        self
+    }
+
+    #[cfg(feature = "server")]
     pub fn on_failed_upgrade(
         mut self,
         callback: impl FnOnce(axum::Error) + Send + 'static,
