@@ -25,7 +25,10 @@ pub(crate) async fn proxy_websocket(
     let proxied_request = into_proxied_request(req, backend_url).map_err(handle_proxy_error)?;
     tracing::trace!(dx_src = ?TraceSrc::Dev, "Connection proxied to {proxied_uri}", proxied_uri = proxied_request.uri());
 
-    Ok(ws.on_upgrade(move |client_ws| async move {
+    Ok(ws
+        .max_frame_size(1024 * 1024 * 1024)
+        .max_message_size(1024 * 1024 * 1024)
+        .on_upgrade(move |client_ws| async move {
         match handle_ws_connection(client_ws, proxied_request).await {
             Ok(()) => tracing::trace!(dx_src = ?TraceSrc::Dev, "Websocket connection closed"),
             Err(e) => {
@@ -67,9 +70,17 @@ async fn handle_ws_connection(
     mut client_ws: axum::extract::ws::WebSocket,
     proxied_request: tokio_tungstenite::tungstenite::handshake::client::Request,
 ) -> Result<(), WsError> {
-    let (mut server_ws, _) = tokio_tungstenite::connect_async(proxied_request)
-        .await
-        .map_err(WsError::Connect)?;
+    let server_ws_config = tokio_tungstenite::tungstenite::protocol::WebSocketConfig::default()
+        .max_frame_size(Some(1024 * 1024 * 1024))
+        .max_message_size(Some(1024 * 1024 * 1024));
+
+    let (mut server_ws, _) = tokio_tungstenite::connect_async_with_config(
+        proxied_request,
+        Some(server_ws_config),
+        false,
+    )
+    .await
+    .map_err(WsError::Connect)?;
 
     let mut closed = false;
     while !closed {
