@@ -16,7 +16,10 @@ dioxus-core-macro = { workspace = true }
 dioxus-html = { workspace = true, features = ["serialize"] }
 dioxus-document = { workspace = true }
 dioxus-signals = { workspace = true, optional = true }
-dioxus-interpreter-js = { workspace = true, features = ["binary-protocol", "serialize"] }
+dioxus-interpreter-js = { workspace = true, features = [
+  "binary-protocol",
+  "serialize",
+] }
 dioxus-cli-config = { workspace = true }
 dioxus-asset-resolver = { workspace = true, features = ["native"] }
 generational-box = { workspace = true }
@@ -50,7 +53,7 @@ async-trait = { workspace = true }
 tao = { workspace = true, features = ["rwh_05"] }
 dioxus-history = { workspace = true }
 base64 = { workspace = true }
-libc = { workspace = true}
+libc = { workspace = true }
 rand = { workspace = true, features = ["std_rng"] }
 subtle = { version = "2.6", features = ["const-generics"] }
 bytes = { workspace = true }
@@ -64,7 +67,9 @@ wry = { workspace = true, features = ["os-webview", "linux-body"] }
 
 [target.'cfg(any(target_os = "windows",target_os = "macos",target_os = "linux",target_os = "dragonfly", target_os = "freebsd", target_os = "netbsd", target_os = "openbsd"))'.dependencies]
 global-hotkey = "0.9.0"
-rfd = { version = "0.17.2", default-features = false, features = ["xdg-portal"] }
+rfd = { version = "0.17.2", default-features = false, features = [
+  "xdg-portal",
+] }
 muda = { workspace = true }
 
 [target.'cfg(any(target_os = "windows",target_os = "macos",target_os = "linux"))'.dependencies]
@@ -121,7 +126,7 @@ targets = [
 dioxus = { workspace = true, features = ["desktop"] }
 exitcode = "1.1.2"
 reqwest = { workspace = true, features = ["json"] }
-http-range = { version = "0.1.5" }
+http-range = { version = "0.1" }
 dioxus-ssr = { workspace = true, default-features = false }
 separator = "0.4.1"
 

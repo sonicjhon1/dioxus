@@ -32,31 +32,52 @@ dioxus-fullstack-macro = { workspace = true }
 http-body-util = "0.1.5"
 futures-util = { workspace = true }
 axum-core = { workspace = true }
-send_wrapper = { features = ["futures"], workspace = true, default-features = true }
+send_wrapper = { features = [
+    "futures",
+], workspace = true, default-features = true }
 serde_json = { workspace = true }
 pin-project = { workspace = true }
-serde_qs = { workspace = true, default-features = true}
+serde_qs = { workspace = true, default-features = true }
 mime = "0.3.17"
-reqwest = { workspace = true, features = ["json", "rustls-no-provider", "cookies", "stream", "multipart"] }
-url = { workspace =  true }
+reqwest = { workspace = true, features = [
+    "json",
+    "rustls-no-provider",
+    "cookies",
+    "stream",
+    "multipart",
+] }
+url = { workspace = true }
 serde_urlencoded = { workspace = true }
 form_urlencoded = { workspace = true }
-axum = { workspace = true, default-features = false, features = ["json", "form", "query", "multipart", "query"] }
+axum = { workspace = true, default-features = false, features = [
+    "json",
+    "form",
+    "query",
+    "multipart",
+    "query",
+] }
 http-body = { workspace = true }
-headers = "0.4.1"
+headers = "0.4.2"
 dioxus-asset-resolver = { workspace = true, features = ["native"] }
 
 const_format = { workspace = true, default-features = true }
 const-str = { workspace = true, default-features = true }
 rustversion = { workspace = true, default-features = true }
-xxhash-rust = { features = ["const_xxh64"], workspace = true, default-features = true }
+xxhash-rust = { features = [
+    "const_xxh64",
+], workspace = true, default-features = true }
 # rmp-serde = { version = "1.3", default-features = true }
 
-derive_more = { version = "2.1.1", features = ["deref", "deref_mut", "display", "from"] }
+derive_more = { version = "2.1.1", features = [
+    "deref",
+    "deref_mut",
+    "display",
+    "from",
+] }
 
 
 # server deps
-axum-extra = { workspace =  true, optional = true, features = ["typed-header"] }
+axum-extra = { workspace = true, optional = true, features = ["typed-header"] }
 inventory = { workspace = true, optional = true }
 tokio = { workspace = true, optional = true }
 tokio-stream = { workspace = true, features = ["sync"], optional = true }
@@ -65,13 +86,31 @@ tower-http = { workspace = true, features = ["fs", "limit"], optional = true }
 tower-layer = { version = "0.3.3", optional = true }
 
 # payloads
-postcard = { features = ["alloc", "use-std"], optional = true, workspace = true, default-features = true }
+postcard = { features = [
+    "alloc",
+    "use-std",
+], optional = true, workspace = true, default-features = true }
 rmp-serde = { version = "1.3", optional = true }
 async-stream = "0.3.6"
 
 # websocket stuff
 # [target.'cfg(target_arch = "wasm32")'.dependencies]
-web-sys = { workspace = true, features = ["WebSocket", "CloseEvent", "ErrorEvent", "Event", "MessageEvent", "BinaryType", "FormData", "Response", "ReadableStream", "AbortController", "File", "ReadableStream", "HtmlFormElement", "FormData"], optional = true }
+web-sys = { workspace = true, features = [
+    "WebSocket",
+    "CloseEvent",
+    "ErrorEvent",
+    "Event",
+    "MessageEvent",
+    "BinaryType",
+    "FormData",
+    "Response",
+    "ReadableStream",
+    "AbortController",
+    "File",
+    "ReadableStream",
+    "HtmlFormElement",
+    "FormData",
+], optional = true }
 gloo-net = "0.7.0"
 js-sys = { workspace = true }
 wasm-bindgen = { workspace = true }
@@ -93,9 +132,7 @@ dioxus-server = { workspace = true }
 
 [features]
 default = ["ws"]
-web = [
-    "dep:web-sys"
-]
+web = ["dep:web-sys"]
 native = []
 server = [
     "dep:inventory",
