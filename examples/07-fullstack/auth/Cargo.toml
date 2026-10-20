@@ -26,7 +26,6 @@ sqlx = { version = "0.9.0", features = [
 http = { workspace = true, optional = true }
 tower = { workspace = true, optional = true }
 
-execute = "0.2.15"
 serde = { workspace = true }
 anyhow = { workspace = true }
 
