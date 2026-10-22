@@ -222,7 +222,7 @@ tracing = "0.1.44"
 tracing-futures = "0.2.5"
 tracing-subscriber = { version = "0.3.23", default-features = false }
 toml = "1.1.8"
-tokio = "1.53"
+tokio = "1.54"
 tokio-util = { version = "0.7.20" }
 tokio-stream = { version = "0.1.19" }
 slab = "0.4.12"
@@ -335,7 +335,7 @@ hyper-util = "0.1.21"
 krates = { version = "0.17.5" }
 libloading = "0.8.9"
 libc = "0.2.191"
-memmap2 = "0.9.11"
+memmap2 = "0.9.12"
 memfd = "0.6.6"
 xxhash-rust = { version = "0.8.19", default-features = false }
 serde_qs = "0.15.0"
@@ -364,7 +364,7 @@ objc2-app-kit = { version = "0.3.2", default-features = false }
 tray-icon = { version = "0.26.1", default-features = false, features = [
     "libappindicator",
 ] }
-open = "5.4.4"
+open = "5.4.5"
 webbrowser = "1.2.4"
 
 # web
@@ -504,7 +504,7 @@ pollster = "0.4.0"
 
 [target.'cfg(target_arch = "wasm32")'.dev-dependencies]
 getrandom = { workspace = true, features = ["wasm_js"] }
-tokio = { version = "1.53", default-features = false, features = [
+tokio = { version = "1.54", default-features = false, features = [
     "sync",
     "macros",
     "io-util",
@@ -514,7 +514,7 @@ tokio = { version = "1.53", default-features = false, features = [
 uuid = { workspace = true, features = ["v4", "serde", "js"] }
 
 [target.'cfg(not(target_arch = "wasm32"))'.dev-dependencies]
-tokio = { version = "1.53", features = ["full"] }
+tokio = { version = "1.54", features = ["full"] }
 
 # To make most examples faster to compile, we split out assets and http-related stuff
 # This trims off like 270 dependencies, leading to a significant speedup in compilation time
